@@ -1,4 +1,4 @@
-package com.sedukta.DigitalBanking_Back.entities;
+package com.sedukta.digitalbanking.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("CA")
 @Entity
-public class CurrentAccount extends BankAccount{
-    private double overDraft;
+@DiscriminatorValue("SA")
+public class SavingAccount extends BankAccount{
+    private double intrestRate;
 }

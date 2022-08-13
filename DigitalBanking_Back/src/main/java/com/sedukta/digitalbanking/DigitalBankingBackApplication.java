@@ -1,14 +1,14 @@
-package com.sedukta.DigitalBanking_Back;
+package com.sedukta.digitalbanking;
 
-import com.sedukta.DigitalBanking_Back.entities.AccountOperation;
-import com.sedukta.DigitalBanking_Back.entities.CurrentAccount;
-import com.sedukta.DigitalBanking_Back.entities.Customer;
-import com.sedukta.DigitalBanking_Back.entities.SavingAccount;
-import com.sedukta.DigitalBanking_Back.enums.AccountStatus;
-import com.sedukta.DigitalBanking_Back.enums.OperationType;
-import com.sedukta.DigitalBanking_Back.repositories.AccountOperationRepository;
-import com.sedukta.DigitalBanking_Back.repositories.BankAccountRepository;
-import com.sedukta.DigitalBanking_Back.repositories.CustomerRepository;
+import com.sedukta.digitalbanking.entities.AccountOperation;
+import com.sedukta.digitalbanking.entities.CurrentAccount;
+import com.sedukta.digitalbanking.entities.Customer;
+import com.sedukta.digitalbanking.entities.SavingAccount;
+import com.sedukta.digitalbanking.enums.AccountStatus;
+import com.sedukta.digitalbanking.enums.OperationType;
+import com.sedukta.digitalbanking.repositories.AccountOperationRepository;
+import com.sedukta.digitalbanking.repositories.BankAccountRepository;
+import com.sedukta.digitalbanking.repositories.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

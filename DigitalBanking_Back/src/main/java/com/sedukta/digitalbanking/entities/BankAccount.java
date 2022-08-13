@@ -1,6 +1,6 @@
-package com.sedukta.DigitalBanking_Back.entities;
+package com.sedukta.digitalbanking.entities;
 
-import com.sedukta.DigitalBanking_Back.enums.AccountStatus;
+import com.sedukta.digitalbanking.enums.AccountStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

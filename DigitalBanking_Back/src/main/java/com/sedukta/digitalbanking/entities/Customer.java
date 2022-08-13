@@ -1,14 +1,12 @@
-package com.sedukta.DigitalBanking_Back.entities;
+package com.sedukta.digitalbanking.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
