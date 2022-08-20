@@ -2,6 +2,8 @@ package com.sedukta.digitalbanking.dto;
 
 import com.sedukta.digitalbanking.enums.AccountStatus;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
