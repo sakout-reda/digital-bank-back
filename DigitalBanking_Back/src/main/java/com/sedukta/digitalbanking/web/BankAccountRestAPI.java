@@ -2,9 +2,7 @@ package com.sedukta.digitalbanking.web;
 
 
 import com.sedukta.digitalbanking.dto.*;
-import com.sedukta.digitalbanking.entities.BankAccount;
-import com.sedukta.digitalbanking.exceptions.BalanceNotSufficientException;
-import com.sedukta.digitalbanking.exceptions.BankAccountNotFoundException;
+import com.sedukta.digitalbanking.exceptions.DigitalBankException;
 import com.sedukta.digitalbanking.services.BankAccountService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +18,7 @@ public class BankAccountRestAPI {
     }
 
     @GetMapping("/accounts/{accountId}")
-    public BankAccountDTO getBankAccount(@PathVariable String accountId) throws BankAccountNotFoundException {
+    public BankAccountDTO getBankAccount(@PathVariable String accountId) throws DigitalBankException {
         return bankAccountService.getBankAccount(accountId);
     }
     @GetMapping("/accounts")
@@ -36,21 +34,21 @@ public class BankAccountRestAPI {
     public AccountHistoryDTO getAccountHistory(
             @PathVariable String accountId,
             @RequestParam(name="page",defaultValue = "0") int page,
-            @RequestParam(name="size",defaultValue = "5")int size) throws BankAccountNotFoundException {
+            @RequestParam(name="size",defaultValue = "5")int size) throws DigitalBankException {
         return bankAccountService.getAccountHistory(accountId,page,size);
     }
     @PostMapping("/accounts/debit")
-    public DebitDTO debit(@RequestBody DebitDTO debitDTO) throws BankAccountNotFoundException, BalanceNotSufficientException {
+    public DebitDTO debit(@RequestBody DebitDTO debitDTO) throws DigitalBankException{
         this.bankAccountService.debit(debitDTO.getAccountId(),debitDTO.getAmount(),debitDTO.getDescription());
         return debitDTO;
     }
     @PostMapping("/accounts/credit")
-    public CreditDTO credit(@RequestBody CreditDTO creditDTO) throws BankAccountNotFoundException {
+    public CreditDTO credit(@RequestBody CreditDTO creditDTO) throws DigitalBankException {
         this.bankAccountService.credit(creditDTO.getAccountId(),creditDTO.getAmount(),creditDTO.getDescription());
         return creditDTO;
     }
     @PostMapping("/accounts/transfer")
-    public void transfer(@RequestBody TransferRequestDTO transferRequestDTO) throws BankAccountNotFoundException, BalanceNotSufficientException {
+    public void transfer(@RequestBody TransferRequestDTO transferRequestDTO) throws DigitalBankException {
         this.bankAccountService.transfer(
                 transferRequestDTO.getAccountSource(),
                 transferRequestDTO.getAccountDestination(),

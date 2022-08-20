@@ -1,6 +1,5 @@
 package com.sedukta.digitalbanking.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sedukta.digitalbanking.enums.AccountStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,7 @@
 package com.sedukta.digitalbanking.web;
 
 import com.sedukta.digitalbanking.dto.CustomerDTO;
-import com.sedukta.digitalbanking.entities.Customer;
-import com.sedukta.digitalbanking.exceptions.CustomerNotFoundException;
+import com.sedukta.digitalbanking.exceptions.DigitalBankException;
 import com.sedukta.digitalbanking.services.BankAccountService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,7 @@ public class CustomerRestController {
         return bankAccountService.searchCustomers("%"+keyword+"%");
     }
     @GetMapping("/customers/{id}")
-    public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws CustomerNotFoundException {
+    public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws DigitalBankException {
         return bankAccountService.getCustomer(customerId);
     }
     @PostMapping("/customers")
