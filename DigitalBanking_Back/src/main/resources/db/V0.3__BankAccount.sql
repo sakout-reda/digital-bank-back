@@ -1,0 +1,2 @@
+INSERT INTO bank_account (id,type,balance,created_at,status,over_draft, intrest_rate, customer_id) VALUES
+    ('7e0f81d0-117a-4991-869b-72da3ee29b41', 'SA', 104529.25, '2022-03-19 12:37:45', 'ACTIVATED', null, 4.86, 1);

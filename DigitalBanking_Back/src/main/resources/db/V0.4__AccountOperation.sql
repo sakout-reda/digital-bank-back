@@ -1,0 +1,3 @@
+INSERT INTO account_operation (id,amount,description,operation_date,type,bank_account_id) VALUES
+(NEXTVAL ('AccountOperation_Seq'),9124, 'Supplement Pancreatic Duct with Synthetic Substitute, Percutaneous Endoscopic Approach', '2021-10-19 13:39:49', 'CREDIT', '7e0f81d0-117a-4991-869b-72da3ee29b41'),
+(NEXTVAL ('AccountOperation_Seq'),2647, 'Revision of Synthetic Substitute in Ureter, Via Natural or Artificial Opening Endoscopic', '2022-06-10 05:32:39', 'CREDIT', '7e0f81d0-117a-4991-869b-72da3ee29b41');
