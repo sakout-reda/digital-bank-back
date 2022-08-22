@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS bank_account (
         created_at timestamp,
         status varchar(255),
         over_draft float8,
-        intrest_rate float8,
+        interest_rate float8,
         customer_id int8);
 CREATE TABLE IF NOT EXISTS account_operation (
         id  bigserial NOT NULL PRIMARY KEY,

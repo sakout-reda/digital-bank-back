@@ -57,7 +57,7 @@ public class BankAccountServiceImpl implements BankAccountService {
         savingAccount.setCreatedAt(new Date());
         savingAccount.setBalance(initialBalance);
         savingAccount.setCustomer(customer);
-        savingAccount.setIntrestRate(intrestRate);
+        savingAccount.setInterestRate(intrestRate);
         return bankAccountRepository.save(savingAccount);
     }
 

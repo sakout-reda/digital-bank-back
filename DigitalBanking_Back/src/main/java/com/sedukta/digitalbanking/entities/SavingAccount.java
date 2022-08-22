@@ -9,5 +9,5 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("SA")
 public class SavingAccount extends BankAccount{
-    private double intrestRate;
+    private double interestRate;
 }
