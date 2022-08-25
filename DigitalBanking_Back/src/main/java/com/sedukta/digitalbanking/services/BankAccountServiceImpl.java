@@ -14,7 +14,9 @@ import com.sedukta.digitalbanking.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,9 +79,10 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public List<CustomerDTO> listCustomers() {
-        List<Customer> customers = customerRepository.findAll();
-        return customers.stream().map(customer -> dtoMapper.fromCustomerToDTO(customer)).collect(Collectors.toList());
+    public Page<CustomerDTO> listCustomers(Pageable pageable) {
+        return customerRepository.findAll(pageable).map(customer -> dtoMapper.fromCustomerToDTO(customer));
+//        return new PageImpl<UserDto>(UserConverter.convert(page.getContent()), p, page.getTotalElements());
+       // return new PageImpl<CustomerDTO>(customers.stream().map(customer -> dtoMapper.fromCustomerToDTO(customer)).collect(Collectors.toList()));
     }
 
     @Override

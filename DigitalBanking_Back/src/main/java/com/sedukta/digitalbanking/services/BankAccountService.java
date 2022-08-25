@@ -7,6 +7,9 @@ import com.sedukta.digitalbanking.dto.CustomerDTO;
 import com.sedukta.digitalbanking.entities.CurrentAccount;
 import com.sedukta.digitalbanking.entities.SavingAccount;
 import com.sedukta.digitalbanking.exceptions.DigitalBankException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -14,7 +17,7 @@ public interface BankAccountService {
     CustomerDTO saveCustomer(CustomerDTO customerDTO);
     CurrentAccount saveCurrentBankAccount(double initialBalance, double overDraft, Long customerId) throws DigitalBankException;
     SavingAccount saveSavingBankAccount(double initialBalance, double intrestRate, Long customerId) throws DigitalBankException;
-    List<CustomerDTO> listCustomers();
+    Page<CustomerDTO> listCustomers(Pageable pageable);
     BankAccountDTO getBankAccount(String accountId) throws DigitalBankException;
     void debit(String accountId, double amount, String description) throws DigitalBankException;
     void credit(String accountId, double amount, String description) throws  DigitalBankException;
