@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,15 +20,9 @@ public class CustomerRestController {
 
     @GetMapping("/customers")
     public Page<CustomerDTO> customers(
-//            Model model,
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "10") int size){
-        Page<CustomerDTO> customerDTOPage = bankAccountService.listCustomers(PageRequest.of(page, size));
-//        model.addAttribute("customers", customerDTOPage.getContent());
-//        model.addAttribute("pages", new int[customerDTOPage.getTotalPages()]);
-//        model.addAttribute("currentPage", page);
-//        model.addAttribute("size", size);
-        return customerDTOPage;
+        return bankAccountService.listCustomers(PageRequest.of(page, size));
     }
     @GetMapping("/customers/search")
     public List<CustomerDTO> searchCustomers(@RequestParam(name = "keyword",defaultValue = "") String keyword){
