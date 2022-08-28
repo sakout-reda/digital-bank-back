@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,10 @@ public class CustomerRestController {
     @GetMapping("/customers")
     public Page<CustomerDTO> customers(
             @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size){
-        return bankAccountService.listCustomers(PageRequest.of(page, size));
+            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "sortBy", defaultValue = "id") String sortBy,
+            @RequestParam(name = "direction", defaultValue = "DESC") String sortDirection){
+        return bankAccountService.listCustomers(PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortDirection), sortBy)));
     }
     @GetMapping("/customers/search")
     public List<CustomerDTO> searchCustomers(@RequestParam(name = "keyword",defaultValue = "") String keyword){
