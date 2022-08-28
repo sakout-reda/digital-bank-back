@@ -10,17 +10,27 @@ import com.sedukta.digitalbanking.exceptions.DigitalBankException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.List;
 
 public interface BankAccountService {
     CustomerDTO saveCustomer(CustomerDTO customerDTO);
+
     CurrentAccount saveCurrentBankAccount(double initialBalance, double overDraft, Long customerId) throws DigitalBankException;
+
     SavingAccount saveSavingBankAccount(double initialBalance, double intrestRate, Long customerId) throws DigitalBankException;
+
     Page<CustomerDTO> listCustomers(Pageable pageable);
+
+    Page<CustomerDTO> searchCustomers(String fullName, String adress, String email, String phoneNumber, Pageable pageable);
+
     BankAccountDTO getBankAccount(String accountId) throws DigitalBankException;
+
     void debit(String accountId, double amount, String description) throws DigitalBankException;
-    void credit(String accountId, double amount, String description) throws  DigitalBankException;
-    void transfer(String accountIdSource, String accountIdDestination,double amount) throws DigitalBankException;
+
+    void credit(String accountId, double amount, String description) throws DigitalBankException;
+
+    void transfer(String accountIdSource, String accountIdDestination, double amount) throws DigitalBankException;
 
     List<BankAccountDTO> bankAccountList();
 
@@ -34,5 +44,5 @@ public interface BankAccountService {
 
     AccountHistoryDTO getAccountHistory(String accountId, int page, int size) throws DigitalBankException;
 
-    List<CustomerDTO> searchCustomers(String keyword);
+
 }

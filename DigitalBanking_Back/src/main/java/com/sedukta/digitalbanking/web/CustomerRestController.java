@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -28,8 +29,15 @@ public class CustomerRestController {
         return bankAccountService.listCustomers(PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortDirection), sortBy)));
     }
     @GetMapping("/customers/search")
-    public List<CustomerDTO> searchCustomers(@RequestParam(name = "keyword",defaultValue = "") String keyword){
-        return bankAccountService.searchCustomers("%"+keyword+"%");
+    public Page<CustomerDTO> searchCustomers( @RequestParam(name = "page", defaultValue = "0") int page,
+                                              @RequestParam(name = "size", defaultValue = "10") int size,
+                                              @RequestParam(name = "sortBy", defaultValue = "id") String sortBy,
+                                              @RequestParam(name = "direction", defaultValue = "DESC") String sortDirection,
+                                              @RequestParam(name = "fullName",defaultValue = "") String fullName,
+                                              @RequestParam(name = "adress",defaultValue = "") String adress,
+                                              @RequestParam(name = "email",defaultValue = "") String email,
+                                              @RequestParam(name = "phoneNumber",defaultValue = "") String phoneNumber){
+        return bankAccountService.searchCustomers("%"+fullName+"%", "%"+adress+"%", "%"+email+"%", "%"+phoneNumber+"%",PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortDirection), sortBy)));
     }
     @GetMapping("/customers/{id}")
     public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws DigitalBankException {
