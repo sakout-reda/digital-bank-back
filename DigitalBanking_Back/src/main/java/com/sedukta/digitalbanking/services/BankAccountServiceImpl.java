@@ -83,8 +83,8 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public Page<CustomerDTO> searchCustomers(String fullName, String adress, String email, String phoneNumber, Pageable pageable) {
-        return customerRepository.searchCustomer(fullName, adress, email, phoneNumber, pageable).map(customer -> dtoMapper.fromCustomerToDTO(customer));
+    public Page<CustomerDTO> searchCustomers(String fullName, String adress, String email, String phoneNumber, String birthday, Pageable pageable) {
+        return customerRepository.searchCustomer(fullName, adress, email, phoneNumber, birthday, pageable).map(customer -> dtoMapper.fromCustomerToDTO(customer));
     }
 
     @Override

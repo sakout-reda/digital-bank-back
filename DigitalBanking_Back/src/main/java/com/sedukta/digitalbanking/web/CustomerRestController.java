@@ -10,9 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-
 @RestController
 @AllArgsConstructor
 @Slf4j
@@ -36,8 +33,9 @@ public class CustomerRestController {
                                               @RequestParam(name = "fullName",defaultValue = "") String fullName,
                                               @RequestParam(name = "adress",defaultValue = "") String adress,
                                               @RequestParam(name = "email",defaultValue = "") String email,
-                                              @RequestParam(name = "phoneNumber",defaultValue = "") String phoneNumber){
-        return bankAccountService.searchCustomers("%"+fullName+"%", "%"+adress+"%", "%"+email+"%", "%"+phoneNumber+"%",PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortDirection), sortBy)));
+                                              @RequestParam(name = "phoneNumber",defaultValue = "") String phoneNumber,
+                                              @RequestParam(name = "birthday",defaultValue = "") String birthday){
+        return bankAccountService.searchCustomers("%"+fullName+"%", "%"+adress+"%", "%"+email+"%", "%"+phoneNumber+"%", "%"+birthday+"%",PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortDirection), sortBy)));
     }
     @GetMapping("/customers/{id}")
     public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws DigitalBankException {

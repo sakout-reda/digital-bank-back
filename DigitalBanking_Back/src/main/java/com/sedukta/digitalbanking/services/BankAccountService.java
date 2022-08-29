@@ -10,7 +10,6 @@ import com.sedukta.digitalbanking.exceptions.DigitalBankException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Date;
 import java.util.List;
 
 public interface BankAccountService {
@@ -22,7 +21,7 @@ public interface BankAccountService {
 
     Page<CustomerDTO> listCustomers(Pageable pageable);
 
-    Page<CustomerDTO> searchCustomers(String fullName, String adress, String email, String phoneNumber, Pageable pageable);
+    Page<CustomerDTO> searchCustomers(String fullName, String adress, String email, String phoneNumber,String birthday, Pageable pageable);
 
     BankAccountDTO getBankAccount(String accountId) throws DigitalBankException;
 
