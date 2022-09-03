@@ -14,7 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Customer {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @SequenceGenerator(name = "CUSTOMER_SEQ", sequenceName = "CUSTOMER_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="CUSTOMER_SEQ" )
     private Long id;
     private String fullName;
     private Date birthday;

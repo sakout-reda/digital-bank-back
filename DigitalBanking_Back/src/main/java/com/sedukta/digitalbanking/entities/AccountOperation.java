@@ -13,7 +13,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class AccountOperation {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @SequenceGenerator(name = "ACCOUNTOPERATION_SEQ", sequenceName = "ACCOUNTOPERATION_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="ACCOUNTOPERATION_SEQ" )
     private Long id;
     private Date operationDate;
     private double amount;
