@@ -31,7 +31,7 @@ public interface BankAccountService {
 
     void transfer(String accountIdSource, String accountIdDestination, double amount) throws DigitalBankException;
 
-    List<BankAccountDTO> bankAccountList();
+    Page<BankAccountDTO> bankAccountList(Pageable pageable);
 
     CustomerDTO getCustomer(Long customerId) throws DigitalBankException;
 

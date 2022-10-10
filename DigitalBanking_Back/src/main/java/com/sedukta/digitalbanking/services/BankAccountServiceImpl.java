@@ -14,6 +14,7 @@ import com.sedukta.digitalbanking.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -141,9 +142,8 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public List<BankAccountDTO> bankAccountList() {
-        List<BankAccount> bankAccounts = bankAccountRepository.findAll();
-        return bankAccounts.stream().map(bankAccount -> {
+    public Page<BankAccountDTO> bankAccountList(Pageable pageable) {
+        return bankAccountRepository.findAll(pageable).map(bankAccount -> {
             if (bankAccount instanceof SavingAccount) {
                 SavingAccount savingAccount = (SavingAccount) bankAccount;
                 return dtoMapper.fromSavingBankAccountToDTO(savingAccount);
@@ -151,7 +151,7 @@ public class BankAccountServiceImpl implements BankAccountService {
                 CurrentAccount currentAccount = (CurrentAccount) bankAccount;
                 return dtoMapper.fromCurrentBankAccountToDTO(currentAccount);
             }
-        }).collect(Collectors.toList());
+        });
     }
 
     @Override

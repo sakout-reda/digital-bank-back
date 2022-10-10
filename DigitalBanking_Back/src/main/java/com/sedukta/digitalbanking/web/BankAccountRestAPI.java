@@ -4,6 +4,9 @@ package com.sedukta.digitalbanking.web;
 import com.sedukta.digitalbanking.dto.*;
 import com.sedukta.digitalbanking.exceptions.DigitalBankException;
 import com.sedukta.digitalbanking.services.BankAccountService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +25,12 @@ public class BankAccountRestAPI {
         return bankAccountService.getBankAccount(accountId);
     }
     @GetMapping("/accounts")
-    public List<BankAccountDTO> listAccounts(){
-        return bankAccountService.bankAccountList();
+    public Page<BankAccountDTO> listAccounts(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "sortBy", defaultValue = "id") String sortBy,
+            @RequestParam(name = "direction", defaultValue = "DESC") String sortDirection){
+        return bankAccountService.bankAccountList(PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortDirection), sortBy)));
     }
     @GetMapping("/accounts/{accountId}/operations")
     public List<AccountOperationDTO> getHistory(@PathVariable String accountId){
